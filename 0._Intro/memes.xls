@@ -1,0 +1,7 @@
+HTTP Request	Endpoint	Hvad gør det
+GET	/memes	Henter alle memes
+GET	/memes/ID	Henter et specifikt meme med ID
+POST	/memes	Opretter et nyt meme
+PUT	/memes/ID	Opdaterer et hele meme elementet
+PATCH	/memes/ID	Opdaterer meme elementet delvist eller helt
+DELETE	/memes/ID	Sletter et meme med et specifikt ID
