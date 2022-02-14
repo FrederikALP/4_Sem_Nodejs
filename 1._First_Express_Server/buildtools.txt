@@ -1,0 +1,17 @@
+java                                node/javascript
+// entrypoint       
+java - pom.xml                      node/javascript - package.json
+// buildtool in java
+java - Maven                        node/javascript - npm
+
+meta-data                           meta-data
+dependencies (external libraries)   dependencies
+build steps                         scripts
+
+json file must be valid json by using curly brackets {}
+also necessary to use the command - npm install
+to install express(packages)
+    "dependencies": {
+        "packagename": "version"
+    }
+then the command npm install "packagename"
