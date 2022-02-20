@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(163, 136, 136);
+    font-family: Calibri, monospace;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -5,26 +5,10 @@ app.use(express.json());
 
 // array of beers
 const beers = [
-    {
-        id: 1,
-        "name": "Grøn Pilsner",
-        "brand": "Tuborg"
-    },
-    {
-        id: 2,
-        "name": "Classic",
-        "brand": "Tuborg"
-    },
-    {
-        id: 3,
-        "name": "Hof",
-        "brand": "Carlsberg"
-    },
-    {
-        id: 4,
-        "name": "Pilsner",
-        "brand": "Royal Eksport"
-    },
+    { id: 1, name: "Grøn Pilsner", brand: "Tuborg" },
+    { id: 2, name: "Classic", brand: "Tuborg" },
+    { id: 3, name: "Hof", brand: "Carlsberg" },
+    { id: 4, name: "Pilsner", brand: "Royal Eksport" },
 ];
 
 // earlier incremented method which isnt suitable
@@ -46,12 +30,14 @@ function incrementedId () {
 
 // get
 app.get("/beers", (req,res) => {
-    res.send(beers);
+    res.send({ data: beers });
 });
 
 // get by id
+// find is better than filter because filter goes through the whole array
 app.get("/beers/:id", (req,res) => {
-    res.send(beers.filter(beer => beer.id === parseInt(req.params.id)));
+    const foundBeer = beers.filter(beer => beer.id === parseInt(req.params.id));
+    foundBeer ? res.send({ data: foundBeer })  : res.status(204).send({});
 });
 
 // post
@@ -97,7 +83,7 @@ app.delete("/beers/:id", (req,res) => {
     const id = parseInt(req.params.id);
     const indexRemove = beers.findIndex( beer => beer.id === id);
     beers.splice(indexRemove,1);
-    res.send({"message":"something was deleted so postman gives a response"});
+    res.send({ message:"something was deleted so postman gives a response" });
 });
 
 app.listen(8080);

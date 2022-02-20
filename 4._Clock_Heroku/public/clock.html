@@ -1,0 +1,73 @@
+<!-- Use "!" to make the initial html file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title>Time</title>
+</head>
+<body>
+
+    <h1>This shows time in various cities</h1>
+
+    <div id=dropdown>
+        <select id="selector" value="${countryId}"></select>
+    </div>
+    <div id=cityDisplay>
+        <p>Current Time in <span id='city'></p>
+    </div>
+    <div id=timeDisplay>
+        <span id='time'></span></p>
+    </div>
+
+    <script>
+        let options = "Europe/Copenhagen";
+        let cityName = "Copenhagen";
+        let today = new Date();
+        const timeZones = [
+            { id: 1, name: "Copenhagen", timeFormat: "Europe/Copenhagen" },
+            { id: 2, name: "London", timeFormat: "Europe/London" },
+            { id: 3, name: "Brussels", timeFormat: "Europe/Brussels" },
+            { id: 4, name: "Amsterdam", timeFormat: "Europe/Amsterdam" },
+            { id: 5, name: "Paris", timeFormat: "Europe/Paris" },
+            { id: 6, name: "New York", timeFormat: "America/New_York" },
+            { id: 7, name: "Los Angeles", timeFormat: "America/Los_Angeles" },
+            { id: 8, name: "Shanghai", timeFormat: "Asia/Shanghai" }
+        ];
+
+    timeZones.forEach(function (item) {
+        let option = document.createElement('option');
+        option.value = item.id;
+        option.innerHTML = item.name;
+        selector.appendChild(option);
+    });
+
+    selector.onchange = function () {
+        countryId = this.value;
+        let today = new Date();
+        const selectedTimeFormat = timeZones.find(x => x.id === parseInt(countryId));
+        options = { timeZone: selectedTimeFormat.timeFormat };
+        cityName = selectedTimeFormat.name;
+        //console.log(selectedTimeFormat);
+        //console.log(today);
+        //document.getElementById('time').innerHTML=today.toLocaleTimeString("en-GB", options);
+        //document.getElementById('city').innerHTML=cityName;
+    };
+
+    function domStuff () {
+        setInterval(() => {
+            let today = new Date();
+            document.getElementById('time').innerHTML=today.toLocaleTimeString("en-GB", options);
+            document.getElementById('city').innerHTML=cityName;
+        }, 100);
+    };
+
+    domStuff();
+    document.getElementById('time').innerHTML=today.toLocaleTimeString("en-GB", options);
+    document.getElementById('city').innerHTML=cityName;
+    </script>
+</body>
+</html>

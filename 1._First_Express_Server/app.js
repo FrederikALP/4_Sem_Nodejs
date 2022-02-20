@@ -1,4 +1,5 @@
 // always call the file to run the server app.js so it is universal
+// to run a server you write - node app.js
 
 //import express
 //importing library
@@ -25,16 +26,34 @@ app.get("/welcome", (req, res) => {
     res.send({ message:"Welcome client you made it!" });
 });
 
+app.get("/clientgreeting/:name", (req, res) => {
+    res.send({greeting: `Hello there, ${req.params.name}`});
+});
+
+// query url - kangaroofacts?cankick=true
+app.get("/kangaroofacts", (req,res) => {
+    res.send(req.query);
+});
+
 // post endpoint use app.xxx to do things like patch/delete/put/get and so forth
 app.post("/mirror", (req, res) => {
     console.log(req.body);
     res.send(req.body);
 });
 
-
-
 // task implement an empty callback function in the line above (only)
 
 //server.port in pom, app.listen must be in the bottom of the file.
-app.listen(8080);
+app.listen(8080, (error) => {
+    // callback function that happens after the server has startet running on the port
+    console.log("Server is running on port", 8080);
+});
 
+// How can i send data with a GET request??
+// Parameters in the URL - path variable            url: /1
+// query string -                                   url: ?key=value&key2=value2
+
+// .getmonth gives the number of the month, starting at 0
+// .getday gives the number of the day of week, starting on sundays at 0
+console.log(new Date());
+console.log(Date());

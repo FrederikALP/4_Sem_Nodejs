@@ -1,0 +1,31 @@
+<!-- Use "!" to make the initial html file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bored?</title>
+</head>
+<body>
+    <h1>Suggest me something to do</h1>
+
+    <div>
+        <p id="textId"></p>
+    </div>
+    <script>
+        // assignment get data from the boredapi and show it on this patch by using fetch
+        fetch("https://www.boredapi.com/api/activity/")
+        .then(response => response.json())
+        .then(data => {
+            const activityParagraph = document.getElementById("textId");
+            //innerText protects against xss, innerHTML doesnt
+            //if using innerHTML use escapeHTML
+            activityParagraph.innerText = data.activity;
+            console.log(data);
+        });
+
+    </script>
+</body>
+</html>
