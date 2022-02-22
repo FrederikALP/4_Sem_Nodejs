@@ -15,6 +15,8 @@ to install express(packages)
         "packagename": "version"
     }
 then the command npm install "packagename"
+npm i
+it is the short command to install all packages specified
 
 nodemon
 nodemon is a tool that restarts the program every time a change is made

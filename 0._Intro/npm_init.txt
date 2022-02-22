@@ -1,0 +1,67 @@
+npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (4._ssr) ssr
+version: (1.0.0)
+description: SSR example in Express
+entry point: (index.js) app.js
+test command:
+git repository: https://github.com/FrederikALP/4_Sem_Nodejs
+keywords: SSR Express, School
+author: Alias or nothing if you dont want to share name
+license: (ISC) MIT
+About to write to C:\Users\frede\IdeaProjects\4_Sem_Nodejs\4._SSR\package.json:
+
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "SSR example in Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrederikALP/4_Sem_Nodejs.git"
+  },
+  "keywords": [
+    "SSR",
+    "Express",
+    "School"
+  ],
+  "author": "Alias or nothing if you dont want to share name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FrederikALP/4_Sem_Nodejs/issues"
+  },
+  "homepage": "https://github.com/FrederikALP/4_Sem_Nodejs#readme"
+}
+
+
+Is this OK? (yes)
+
+
+npm init -y (quick way to create new project)
+C:\Users\frede\IdeaProjects\4_Sem_Nodejs\4._SSR\npm-y>npm init -y
+Wrote to C:\Users\frede\IdeaProjects\4_Sem_Nodejs\4._SSR\npm-y\package.json:
+
+{
+  "name": "npm-y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

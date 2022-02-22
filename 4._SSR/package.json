@@ -1,0 +1,27 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "SSR example in Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrederikALP/4_Sem_Nodejs.git"
+  },
+  "keywords": [
+    "SSR",
+    "Express",
+    "School"
+  ],
+  "author": "Alias or nothing if you dont want to share name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FrederikALP/4_Sem_Nodejs/issues"
+  },
+  "homepage": "https://github.com/FrederikALP/4_Sem_Nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

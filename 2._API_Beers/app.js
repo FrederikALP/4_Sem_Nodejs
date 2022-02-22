@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+// Body-parser
 app.use(express.json());
 
 // array of beers
@@ -28,6 +29,10 @@ function incrementedId () {
     return newBeerId;
 };
 
+// let CURRENT_ID = 3;
+// ++CURRENT_ID så incrementer den med det samme.
+// CURRENT_ID++ så bliver det incremented efter.
+
 // get
 app.get("/beers", (req,res) => {
     res.send({ data: beers });
@@ -42,8 +47,11 @@ app.get("/beers/:id", (req,res) => {
 
 // post
 app.post("/beers", (req, res) => {
+    // Request to recieve the body
     const postBeer = {id: incrementedId(), name: req.body.name, brand: req.body.brand};
+    // Push the object to the array
     beers.push(postBeer);
+    // Send a confirmation to the user
     res.send(postBeer);
 });
 
@@ -65,6 +73,11 @@ app.patch("/beers/:id", (req, res) => {
     const beerPatch = req.body;
     beerPatch.id = parseInt(req.params.id);
 
+    // beers.indexOf({Object}); cant take an object from the client
+    // beers.findIndex(predicate);
+
+    // Number(req.params.id)); this is a number!!! will say its not a number if it contains other types
+    // parseInt(req.params.id)); please parse this as integer. Will take the numbers out of a String that has different types
     const beerIndex = beers.findIndex(beer => beer.id === parseInt(req.params.id));
 
     if (beerIndex !== -1) {
