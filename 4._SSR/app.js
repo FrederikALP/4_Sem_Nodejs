@@ -10,9 +10,9 @@ const serverData = [
     { id: 2, changed: false }
 ];
 
-const updatedServerData = serverData.map(data => data.id === clientId ? { ...data, ...clientBody } : data);
+const updatedServerData = serverData.map(data => data.id === clientId ? { ...data, ...clientBody } : { data} );
 
-const updatedServerData2 = serverData.map(data => data.id === clientId ? { ...data, ...clientBody, id: clientId } : data);
+const updatedServerData2 = serverData.map(data => data.id === clientId ? { ...data, ...clientBody, id: clientId } : { data} );
 
 console.log(updatedServerData2);
 
