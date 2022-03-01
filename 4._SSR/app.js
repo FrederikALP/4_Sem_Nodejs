@@ -3,6 +3,19 @@ const app = express();
 
 app.use(express.static("public"));
 
+const clientId = 2;
+const clientBody = { id: 5, changed: true, newValue: "I hope that you will show me" };
+const serverData = [
+    { id: 1, notice: "Don't update me!" },
+    { id: 2, changed: false }
+];
+
+const updatedServerData = serverData.map(data => data.id === clientId ? { ...data, ...clientBody } : data);
+
+const updatedServerData2 = serverData.map(data => data.id === clientId ? { ...data, ...clientBody, id: clientId } : data);
+
+console.log(updatedServerData2);
+
 const fs = require("fs");
 
 const nav = fs.readFileSync("./public/components/nav/nav.html").toString();
