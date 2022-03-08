@@ -1,0 +1,36 @@
+degit is a scaffolding tool
+a scaffolding tool gives you a project
+that has certain things already
+
+npx is npm but a different command, npm installs packages locally
+locally local in one project, or globally for all projects
+npx is used to always get the newest one instead of having an outdated version globally installed
+for something like svelte you want to make sure you always get updated version
+whereas for nodemon it is not necessary
+
+npx takes it online and removes it once it has been cached
+
+npx degit sveltejs/template my-svelte-project
+cd my-svelte-project
+npm install
+npm run dev
+
+npm run build
+runs the build script
+
+npm run start
+is intended for production, so it is now being served on port 8080
+
+npm run dev
+starts the project on localhost:8080 and watches for changes and updates the page
+without needing to refresh the page.
+
+setupTypeScript sets up the svelte project for typescript instead of js
+makes typescript support available
+adds a tsconfig folder
+deletes the scripts folder and contents
+
+the structure of pages and components folders is not something you need to adhere to
+but many different companies follow this structure
+
+.svelte files are capitalized

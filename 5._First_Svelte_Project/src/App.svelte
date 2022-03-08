@@ -1,10 +1,22 @@
 <script>
+import Sun from "./components/Sun/Sun.svelte";
+import Profile from "./pages/Profile/Profile.svelte";
+import Tree from "./pages/Tree/Tree.svelte";
+
 	export let name;
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+
+	<h1>Hello {name}!</h1> <!--name is taking directly from the let above unlike html-->
+	<Sun />
+	<p>{2 * 2}</p> <!--You can write javascript calculations in the svelte code directly-->
+	<Tree /><!--Imports the page/component Tree can also manually import with this line - import Tree from "./pages/Tree/Tree.svelte"-->
+	<Profile name={"Anders"}
+	favoriteColor={"blue"}/>
+
+	<Profile name={"Frederik"}
+	favoriteColor={"Red"}/>
 </main>
 
 <style>
