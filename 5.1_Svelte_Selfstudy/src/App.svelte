@@ -1,6 +1,9 @@
 <script>
 	import Info from "../components/Info.svelte";
 	import Nested from "../components/Nested.svelte";
+	import Thing from "../components/Thing.svelte";
+	import Inner from "../components/Inner.svelte";
+	import Outer from "../components/Outer.svelte";
 
 	export let name; //first exercise tells us to make a let called name, but name is already defined in main.js under props
 	let src = './tutorial/image.gif';
@@ -34,6 +37,50 @@
 		website: 'https://svelte.dev'
 	};
 
+	let user = { loggedIn: false }; //by default false so it is logged out by default
+
+	function toggle() { // toggle to show something depending on if boolean is true or false
+		user.loggedIn = !user.loggedIn;
+	}
+
+	let x = 7;
+
+	let cats = [ //array of objects containing url endings to youtube links and a name
+		{ id: 'J---aiyznGQ', name: 'Keyboard Cat' },
+		{ id: 'z_AbfPXTKms', name: 'Maru' },
+		{ id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
+	];
+
+	let things = [
+		{ id: 1, color: 'darkblue' },
+		{ id: 2, color: 'indigo' },
+		{ id: 3, color: 'deeppink' },
+		{ id: 4, color: 'salmon' },
+		{ id: 5, color: 'gold' }
+	];
+
+	function handleClickThree() {
+		things = things.slice(1);
+	}
+
+	let m = { x: 0, y: 0 };
+// handles storing the coordinates of the mouse on the screen
+	function handleMousemove(event) {
+		m.x = event.clientX;
+		m.y = event.clientY;
+	}
+
+	function handleClickFour() {
+		alert('no more alerts')
+	}
+
+	function handleMessage(event) {
+		alert(event.detail.text);
+	}
+
+	function handleMessageOuter(event) {
+		alert(event.detail.text);
+	}
 </script>
 
 <main>
@@ -53,9 +100,92 @@
 	<Nested answer={42}/> <!--The point is to show the style for this has to be done within Nested.svelte file. With the answer assignment we give answer a different value than the below statement-->
 	<Nested/> <!--This statements takes the default value of Nested.svelte, which is a mystery, unlike the above statement where it is altered-->
 	<Info {...pkg}/><!--Spread operator has been used to assign properties in a component which is being done here-->
+
+	{#if user.loggedIn} <!--If(block/statement) true button will show Log out-->
+	<button on:click={toggle}>
+		Log out
+	</button>
+	{/if}
+
+	{#if !user.loggedIn} <!--If(block/statement) false button will show Log in-->
+		<button on:click={toggle}>
+			Log in
+		</button>
+	{/if}
+
+	{#if user.loggedIn} <!--Same as above but done with an else(block) statement instead of 2 if statements-->
+	<button on:click={toggle}>
+		Log out
+	</button>
+	{:else}
+		<button on:click={toggle}>
+			Log in
+		</button>
+	{/if}
+
+	{#if x > 10} <!--if, else if, and else statement/block-->
+	<p>{x} is greater than 10</p>
+	{:else if 5 > x}
+		<p>{x} is less than 5</p>
+	{:else}
+		<p>{x} is between 5 and 10</p>
+	{/if}
+
+	<h1>The Famous Cats of YouTube</h1>
+	<ul>
+		{#each cats as { id, name }, i} <!--Takes each cats object and puts in the id at the {id} spot and name in name and adds name after i+1-->
+			<li> <!--a list-->
+				<a target="_blank" href="https://www.youtube.com/watch?v={id}"> <!--target _blank means that it makes a new tab, if it would be _self then it would open in the same tab-->
+					{i + 1}: {name}
+				</a>
+			</li>
+		{/each}
+	</ul>
+
+	<button on:click={handleClickThree}>
+	Remove first thing
+	</button>
+<!--Shows the difference to how slice is handled when a it has a key and pair value, and if it doesnt if it doesnt it will always be blue at the top and the color changes and it appears
+it is taking it from the bottom and up and if it does have a key value pair it appears to be taking from the top, as the id controls the color and not the index-->
+	<div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 1em">
+		<div>
+			<h2>Keyed</h2>
+			{#each things as thing (thing.id)}
+				<Thing current={thing.color}/>
+			{/each}
+		</div>
+
+		<div>
+			<h2>Unkeyed</h2>
+			{#each things as thing}
+				<Thing current={thing.color}/>
+			{/each}
+		</div>
+	</div>
+
+	<div on:mousemove={handleMousemove}> <!--Shows the mouse position in the when the mouse is inside the div-->
+		The mouse position is {m.x} x {m.y}
+	</div>
+<!--Does the same but handles it inline instead of calculating it in the script-->
+	<div on:mousemove="{e => m = { x: e.clientX, y: e.clientY }}">
+		The mouse position is {m.x} x {m.y}
+	</div>
+
+	<button on:click|once={handleClickFour}> <!--On click but only once per refresh will it give an error-->
+		Click me
+	</button>
+
+	<Inner on:message={handleMessage}/> <!--Calls the component to do the function handleMessage. Is an alert handler almost entirely made from a component then propagated into App.svelte I believe-->
+
+	<Outer on:message={handleMessageOuter}/> <!--Same as above, but the Inner component has been imported to another component, the outer component and is being called through that-->
 </main>
 
 <style>
+	div { 
+		width: 100%; 
+		height: 100%; 
+	}
+
 	main {
 		text-align: center;
 		padding: 1em;
