@@ -1,9 +1,9 @@
 <script>
-	import Info from "../components/Info.svelte";
-	import Nested from "../components/Nested.svelte";
-	import Thing from "../components/Thing.svelte";
-	import Inner from "../components/Inner.svelte";
-	import Outer from "../components/Outer.svelte";
+	import Info from "./components/Info.svelte";
+	import Nested from "./components/Nested.svelte";
+	import Thing from "./components/Thing.svelte";
+	import Inner from "./components/Inner.svelte";
+	import Outer from "./components/Outer.svelte";
 
 	export let name; //first exercise tells us to make a let called name, but name is already defined in main.js under props
 	let src = './tutorial/image.gif';
