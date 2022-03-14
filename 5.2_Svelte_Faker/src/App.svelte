@@ -18,7 +18,7 @@
         fakerList.push(fakePerson);
     }
 
-    for (let index = 0; index < 50; index++) {
+    for (let i = 0; i < 10; i++) {
         newPerson();
     }
 </script>
