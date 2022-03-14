@@ -12,8 +12,6 @@
 
 <style>
     th {
-        border: black 1px;
-        outline: black 1px;
-        outline-width: 1px;
+        border: 1px solid black;
     }
 </style>
