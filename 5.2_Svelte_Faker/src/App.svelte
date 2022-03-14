@@ -1,15 +1,36 @@
 <script>
-	export let faker;
-	console.log(faker);
+	import { faker } from '@faker-js/faker';
+	export let name;
+	import PeopleTable from "./components/PeopleTable.svelte";
+	let fakerList = []
+
+    faker.setLocale("nb_NO");
+
+    function newPerson(){
+        const gender = faker.name.gender(true);
+        const fakePerson = {
+            firstName: faker.name.firstName(gender),
+            lastName: faker.name.lastName(),
+            gender: gender,
+            avatar: faker.image.avatar(),
+            job: faker.name.jobArea()
+        }
+        fakerList.push(fakePerson);
+    }
+
+    for (let index = 0; index < 25; index++) {
+        newPerson();
+    }
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<PeopleTable fakerList = {fakerList}/>
 </main>
 
 <style>
 	main {
+		display: flex;
+		flex-direction: column;
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;
