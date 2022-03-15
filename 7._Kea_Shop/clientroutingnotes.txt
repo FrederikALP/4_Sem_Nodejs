@@ -14,3 +14,6 @@ npm.js.com/package/svelte-routing
 
 both of them takes a navbar where you can link to things
 explanations of them are also on their respective pages
+
+"start": "sirv public --no-clear --single" 
+if you add --single to the start script, it tells the script/function sirv that it is a single page application
