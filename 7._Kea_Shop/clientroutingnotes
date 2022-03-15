@@ -1,0 +1,16 @@
+There are different ways to do client routing with svelte
+npm.js.com/package/page 
+Allows you to define the routes, set a variable and set that page to be displayed
+It handles for you which component to display when it hits that route
+
+Anders made his own too, its a navigator which takes the navbar
+and handles the route, when you click the page it creates a store
+
+npm.js.com/package/svelte-navigator
+npm i svelte-navigator to install
+Anders would go with this one
+
+npm.js.com/package/svelte-routing
+
+both of them takes a navbar where you can link to things
+explanations of them are also on their respective pages

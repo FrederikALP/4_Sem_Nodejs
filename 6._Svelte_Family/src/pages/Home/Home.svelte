@@ -2,6 +2,11 @@
 import Child from "../../components/Child/Child.svelte";
 import Parent from "../../components/Parent/Parent.svelte";
 
+import { supermarket } from "../../store/supermarket.js";
+
+console.log($supermarket); //$ indicates it is the reactive value
+// $ also means you are accessing the values inside, not the functions of the writable
+
 const parents = [
         {
             key: 1,
@@ -28,3 +33,6 @@ const parents = [
 <Child handleFamilyMeetingCall={onFamilyMeetingCalled} stereotype="black-sheep" name = "Gustav"/>
 <Child handleFamilyMeetingCall={onFamilyMeetingCalled} stereotype="bright-kid" name = "Mads"/>
 <Child handleFamilyMeetingCall={onFamilyMeetingCalled} isGirl={true} name = "Ludvig"/>
+
+<h1>This is the online portal for the supermarket</h1>
+<p>{JSON.stringify($supermarket)}</p>
