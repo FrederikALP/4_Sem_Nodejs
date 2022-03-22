@@ -16,6 +16,60 @@ app.use(express.static('public'));
 import helmet from "helmet";
 app.use(helmet());
 
+//installed via npm install express-rate-limit
+//this is a rate limiter which can limit the amount of times you can
+import rateLimit from 'express-rate-limit'
+
+const baseLimiter = rateLimit({
+    //the line below limits the window auth times, after 15 minutes the limit will be reset
+	windowMs: 15 * 60 * 1000, // 15 minutes
+    //The client is allowed to access 5 times
+	max: 100, // Limit each IP to 5 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+const authLimiter = rateLimit({
+    //the line below limits the window auth times, after 15 minutes the limit will be reset
+	windowMs: 15 * 60 * 1000, // 15 minutes
+    //The client is allowed to access 5 times
+	max: 5, // Limit each IP to 5 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+//baseLimiter applies to all other routes because authLimiter app.use is after and is the latest applied logic
+//baseLimiter can be  used for something like dos prevention
+app.use(baseLimiter);
+//now every route starting with auth will have authLimiter applied
+// /auth and /auth/* works in the same and applies to all routes that includes /auth
+app.use("/auth", authLimiter);
+
+// should be a post and not a get because a get is never encrypted, even not in a https server
+app.post("/auth/login", (req, res) => {
+    res.send({ message: "You are trying to log in...."});
+});
+
+//session is an extra data layer in the backend, we can use a session keep information whether a user is logged in or not
+//express-session is a npm package
+import session from "express-session";
+//sessions can be used with a boolean statement, isUserLoggedIn and that is authorization for the mandatory(easier than JWT)
+//if you would like to log out a user, then req.session.destroy could be used for example
+// we will use the status code not authorized
+app.use(session({
+    secret: 'keyboard cat should not be pushed',
+    // if it is true, it will resave the session, if it is false - if you are not updating the session dont try to update the session
+    resave: false,
+    // it means that even if you are not starting the session for the first, we want to create a session for that client
+    // we can control when sessions are made
+    saveUninitialized: true,
+    // we have to make it false, other it is not gonna work, this only works with true if it is a https server
+    cookie: { secure: false }
+}));
+
+import planetsRouter from "./routers/planets.js";
+app.use(planetsRouter);
+
 //"type": "module", that has to be fixed and you cannot use get in the same way
 /*app.get("/clothes", (req, res) => {
     res.sendFile(__dirname + "/public/clothes.html");
