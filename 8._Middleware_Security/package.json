@@ -1,0 +1,16 @@
+{
+   "type": "module",
+   "scripts": {
+      "start-dev": "cross-env PORT=3000 nodemon app.js",
+      "start": "node app.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "dependencies": {
+      "express": "^4.17.3",
+      "helmet": "^5.0.2",
+      "node-fetch": "^2.6.7"
+   },
+   "devDependencies": {
+      "cross-env": "^7.0.3"
+   }
+}
