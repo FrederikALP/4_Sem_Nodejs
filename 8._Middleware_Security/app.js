@@ -8,6 +8,11 @@ const app = express();
 
 app.use(express.static('public'));
 
+import path from "path";
+
+//if "public", "clothes.html" can also be done it concatenate and solve the path?
+//path.resolve("public/clothes.html");
+
 //Helmet is a security package that you can add to your app, it will help you but doesnt stop all things
 //there is explanation in the github and package page
 // we can install helmet and use it as middleware and it is executed on all requests and potentially make your application safer
