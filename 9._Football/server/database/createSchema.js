@@ -1,4 +1,4 @@
-import db from "./createConnection.js";
+import db from "./createSQLiteConnection.js";
 
 const isInDeleteMode = true;
 
@@ -10,3 +10,11 @@ db.exec(`CREATE TABLE IF NOT EXISTS players (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(70)
 );`);
+
+// Seed
+if (isInDeleteMode) {
+db.run("INSERT INTO players (name) VALUES ('Messi') ");
+db.run("INSERT INTO players (name) VALUES ('Ronaldo' ");
+};
+
+db.close();

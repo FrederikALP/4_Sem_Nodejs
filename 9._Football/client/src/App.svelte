@@ -6,7 +6,7 @@
 	
 	onMount(async () => {
 		//fetching from the server side localhost 3000
-		const response  = await fetch($baseURL + "/players");
+		const response  = await fetch($baseURL + "/api/players");
 		//pulling the key value out of the data by the keyname (destructuring)
 		const { data:playersArray } = await response.json();
 		players = playersArray;

@@ -1,9 +1,15 @@
 import express from "express";
 const app = express();
 
+app.use(express.json());
+
 //cors middleware is important to be above the content it is supposed to affect
 //import cors from "cors";
 //app.use(cors());
+
+//script in package.json
+//"createdb": "node ./database/createSchema.js"
+// npm run createdb is the command that will create schema
 
 //serve the static svelte files with node/express
 import path from "path";
