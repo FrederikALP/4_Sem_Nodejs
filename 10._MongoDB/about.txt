@@ -1,0 +1,13 @@
+MongoDb                 SQL
+Collections  <----->    Tables
+
+Relations
+
+jsonSchema vs. ODM
+MongoDB is not restricted by having similar objects, it can be any json value
+    for MongoDB
+C - insert ( db.dbname.insert({ "objectName": "key"}) )
+R - find ( db.dbname.find() )
+U - update db.tutorials.update({ channelName: "How to Basic" }, { $set: { viewCounter: 123132153 } })
+    //without $set it will replace the first {} with the second {}
+D - deleteOne / deleteMany / remove
